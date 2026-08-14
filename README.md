@@ -31,5 +31,4 @@ AI 图像智能重构 Skill（专业摄影版）
 方法一：直接导入 Skill 文件
 将本仓库中的 'skill.md' 文件导入你的 AI Agent/平台即可运行。
 方法二：克隆仓库
-bash
-git clone https://github.com/jasonofchina/ai-image-reconstruct.git
+
