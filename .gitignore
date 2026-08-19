@@ -1,0 +1,56 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.sublime-project
+*.sublime-workspace
+
+# Temp files
+*.tmp
+*.temp
+*.log
+*.bak
+
+# Test outputs
+test_output/
+output/
+*.test.jpg
+*.test.png
+
+# Env vars
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# Large raw files
+*.raw
+*.RAW
+*.dng
+*.DNG
+*.cr2
+*.CR2
+*.nef
+*.NEF
+*.arw
+*.ARW
