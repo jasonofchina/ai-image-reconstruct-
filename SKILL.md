@@ -1,15 +1,15 @@
 ---
-skill_name: "AI 图像智能重构（专业摄影版）"
-skill_id: "image-reconstruct"
-version: "1.3.0"
-author: "jasonofchina"
-type: "image_processing"
-trigger: "用户上传图片并输入[重构]相关指令"
-required_capabilities:
-  - image_input
-  - image_generation
-  - vision_analysis
-  - web_search
+name: image-reconstruct
+description: 基于原图进行 AI 智能风格重构的专业摄影图像处理技能，支持三档重构强度、画幅比例与视角调整、像素级保真约束、参考图身份保持、生图方式三选一（内置生图/外接API/返回Prompt）。Use when the user uploads an image and asks to 重构、重绘、风格化、重新生成、reconstruct、restyle or style transfer.
+license: MIT
+compatibility: 适用于 Claude、ChatGPT、Coze 等支持 Agent Skills 开放标准的平台；豆包、千问、文心一言、星火等提示词型平台可将正文直接作为系统提示词粘贴使用。
+metadata:
+  author: jasonofchina
+  version: "1.3.0"
+  skill_id: image-reconstruct
+  type: image_processing
+  trigger: 用户上传图片并输入[重构]相关指令
+  required_capabilities: image_input, image_generation, vision_analysis, web_search
 ---
 
 # Skill：AI 图像智能重构（专业摄影版）
