@@ -52,3 +52,64 @@ Import the `skill.md` file from this repository into your AI Agent/platform to r
 Method 2: Clone the repository
 ```bash
 git clone https://github.com/jasonofchina/ai-image-reconstruct.git
+```
+
+## 使用方法 / How to Use
+
+### 触发条件 / Trigger Conditions
+上传图片后，输入以下关键词之一即可触发：  
+After uploading an image, enter any of the following keywords to trigger:
+`重构`、`重绘`、`风格化`、`重新生成`、`reconstruct`、`style transfer`
+
+### 示例指令 / Example Commands
+```
+重构，电影感青橙色调，改为1:1画幅，视线上移，中等强度
+Reconstruct, cinematic teal-orange tone, change to 1:1 aspect ratio, elevate sight line, medium strength
+```
+
+## 输入规范 / Input Specifications
+
+| 项目 / Item         | 要求 / Requirement                              |
+|---------------------|--------------------------------------------------|
+| 图片格式 / Format   | JPG、JPEG、PNG                                   |
+| RAW 格式            | 不支持直传，需先转换为 JPG/PNG                    |
+| 建议分辨率 / Resolution | 长边 1024px ~ 4096px                          |
+| 文件大小 / Size     | 单张 ≤ 20MB                                      |
+
+## ⚙️ 依赖能力 / Required Capabilities
+
+本 Skill 正常运行依赖以下能力：  
+This Skill requires the following capabilities to run normally:
+
+- `image_input`：接收用户上传图片 / Receive user-uploaded images
+- `image_generation`：执行图像重构 / Perform image reconstruction
+- `vision_analysis`：原图理解、保真校验、元素推理 / Original image understanding, fidelity validation, element inference
+- `web_search`：联网核实合规与侵权风险 / Verify compliance and infringement risks online
+
+## 测试用例 / Test Cases
+
+详见 examples/example_reconstruct.md  
+See examples/example_reconstruct.md
+
+## 合规与安全 / Compliance & Safety
+
+- 所有处理必须以原图为基础，禁止无中生有  
+  All processing must be based on the original image; nothing can be generated from scratch
+- 严格锁定核心元素，避免 AI 幻觉  
+  Core elements are strictly locked; AI hallucinations are prevented
+- 画幅/视角调整必须经用户确认  
+  Aspect ratio/angle adjustments must be confirmed by the user
+- 双重审核机制确保输出合法合规  
+  Dual review mechanisms ensure legal and compliant output
+- 拦截、降级或跳过调整时均会向用户说明原因  
+  Reasons for interception, downgrade, or skipping adjustments are explained to the user
+
+## 版本记录 / Version History
+
+见 CHANGELOG.md  
+See CHANGELOG.md
+
+## 许可证 / License
+
+本项目采用 MIT License 开源。  
+This project is open-sourced under the MIT License.
