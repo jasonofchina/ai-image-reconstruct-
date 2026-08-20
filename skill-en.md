@@ -1,7 +1,7 @@
 ---
 skill_name: "AI Image Intelligent Reconstruction (Pro Photography Edition)"
 skill_id: "image-reconstruct"
-version: "1.1.0"
+version: "1.2.0"
 author: "jasonofchina"
 type: "image_processing"
 trigger: "User uploads an image and inputs [reconstruct] related commands"
@@ -58,6 +58,7 @@ If only an image is uploaded with no command, proactively ask:
 - **Optional**: Reconstruction intensity (conservative/medium/aggressive), default `medium`
 - **Optional**: Target aspect ratio adjustment (e.g., "change to 1:1")
 - **Optional**: Camera angle adjustment intent (e.g., "elevate sight line")
+- **Optional**: Generation execution method (see Section 9)
 
 If the style description is missing, you must ask and must not guess:
 > "Reconstruction mode requires an intentional style description, such as tone, lighting, angle, or atmosphere. Please elaborate."
@@ -100,33 +101,34 @@ When either of the following two adjustments is triggered, the "Adjustment Confi
 1. Validate image format/size; return prompt if non-compliant.
 2. Parse style description, intensity, aspect ratio/angle adjustment needs.
 3. Ask the user if style description is missing.
+4. Confirm the generation execution method (see Section 9); ask if unspecified.
 
 ### Stage 2: Pre-Compliance Review
-4. Assess the text command for compliance and infringement risk (verify online if necessary).
-5. Immediately block any detected risk and provide safe alternative suggestions.
+5. Assess the text command for compliance and infringement risk (verify online if necessary).
+6. Immediately block any detected risk and provide safe alternative suggestions.
 
 ### Stage 3: Adjustment Confirmation (Key Node)
-6. **If aspect ratio or camera angle adjustment is detected**:
+7. **If aspect ratio or camera angle adjustment is detected**:
    - Show the user a preview description of the adjustment plan, e.g.:
      > "Detected intent to adjust aspect ratio from 3:4 to 1:1. Based on element distribution, we recommend cropping 15% of the top sky area to keep the main subject and foreground intact. Confirm this adjustment?"
      > "Detected intent to elevate the sight line. Based on the current perspective, elevating it will bring more of the building top into frame and reduce the bottom pavement. Confirm this adjustment?"
    - **User confirms** → proceed to Stage 4
    - **User rejects or does not reply** → skip this adjustment, execute base reconstruction only
-7. If no aspect ratio/angle adjustment is needed, proceed directly to Stage 4.
+8. If no aspect ratio/angle adjustment is needed, proceed directly to Stage 4.
 
 ### Stage 4: Reconstruction Generation (Fidelity Constraints)
-8. Extract original image features, map to style parameters.
-9. Apply reconstruction intensity and confirmed adjustments.
-10. **Mandatory fidelity checkpoints**:
+9. Extract original image features, map to style parameters.
+10. Apply reconstruction intensity and confirmed adjustments.
+11. **Mandatory fidelity checkpoints**:
     - Text/logo zones: lock original pixels, prohibit redrawing
     - Edge details: check for aliasing/artifacts/purple fringing
     - Sharpness: compare region-by-region with the original, prohibit sharpening or blurring
     - Element integrity: key subjects free of deformation/loss
-11. If fidelity check fails, retry once automatically; if still fails, downgrade intensity or inform the user.
+12. If fidelity check fails, retry once automatically; if still fails, downgrade intensity or inform the user.
 
 ### Stage 5: Post-Compliance & Output
-12. Visual compliance recheck (infringement/inappropriate content/hallucination).
-13. After passing, output the image + summary.
+13. Visual compliance recheck (infringement/inappropriate content/hallucination).
+14. After passing, output the result according to the execution method agreed in Section 9.
 
 ---
 
@@ -140,6 +142,7 @@ When either of the following two adjustments is triggered, the "Adjustment Confi
 Intensity: [Conservative/Medium/Aggressive]
 Aspect ratio adjustment: [None / 3:4→1:1 (confirmed) / user rejected]
 Angle adjustment: [None / Elevated sight line (confirmed) / user rejected]
+Execution method: [Agent built-in generation / External API / Return prompt]
 Compliance review: [Passed]
 Fidelity status: [Text intact / No artifacts / Sharpness matches original]
 Adjustment notes: [Describe changes in professional photography language]
@@ -161,6 +164,8 @@ Notes: [If any]
 | Pre-compliance hit | Block + safe alternative suggestion |
 | Post-compliance hit | Block output + advise adjustment direction |
 | Element loss/hallucination | Retry or reduce intensity |
+| API key invalid / quota exhausted | Stop immediately, delete the authorized key, inform the user |
+| User did not authorize external API | Fall back to "Return prompt" or "Agent built-in generation" |
 
 ---
 
@@ -172,6 +177,7 @@ Notes: [If any]
 4. **Public Order**: No violence/pornography/discrimination/political sensitivity.
 5. **Transparency**: Always explain the reason for blocking, downgrading, or skipping adjustments.
 6. **Fidelity First**: When stylization conflicts with fidelity, fidelity takes priority.
+7. **Key Security**: External API keys are authorized for single use only. Delete immediately after use; never store, log, reuse, or write to any file.
 
 ---
 
@@ -202,19 +208,91 @@ Notes: [If any]
 
 ---
 
-## 9. Dependency Declarations
+## 9. Generation Execution Methods (Choose One, Confirmed Before Each Task)
+
+At Stage 1 of every reconstruction task, the execution method must be confirmed first. If the user does not specify one, ask proactively:
+
+> "Please choose a generation method for this reconstruction:
+> 1. Agent calls the built-in generation API directly (recommended, hassle-free);
+> 2. I provide an API key, and the Agent calls an external generation API (valid for this task only);
+> 3. Return a complete prompt for me to use in my own generation tool (I will specify the target tool)."
+
+### Method 1: Agent Calls Built-in Generation API
+- **Condition**: The platform has the `image_generation` capability and the user has not specified otherwise.
+- **Behavior**: Generate the image directly using this Skill's parameters, going through the full Stage 4 fidelity check.
+- **Output**: The generated image + processing summary.
+
+### Method 2: User Provides API Key, Agent Calls External Generation API
+- **Condition**: The user explicitly chooses this and provides the API key and service type (e.g., Jimeng, Midjourney API, custom Stable Diffusion, etc.).
+- **Security Rules (Mandatory)**:
+  1. **Single-use authorization**: The key is valid for this task only; delete it immediately after completion, keeping no copy.
+  2. **No persistence**: Never write the key to files, logs, memory, or any persistent storage.
+  3. **No full display**: Never echo the full key in conversation; confirm only in masked form (e.g., `sk-****abcd`).
+  4. **Burn after use**: After generation, proactively inform the user that "the authorized key has been deleted".
+  5. **Failure handling**: On failure (invalid key / quota exhausted / network error), stop retrying immediately, delete the key, and prompt the user to check.
+- **Output**: The generated image + processing summary + note that the key has been deleted.
+
+### Method 3: Return a Complete Prompt (User Self-service)
+- **Condition**: The user chooses Method 3 and specifies the target generation tool.
+- **Behavior**: Do not call any generation API; output a complete, ready-to-paste prompt only.
+
+#### 9.1 Prompt Writing Rules (Mandatory, Anti-Hallucination / Anti-Omission)
+When generating a complete prompt, include every item below — none may be omitted, and no ambiguous wording is allowed:
+
+1. **Target tool adaptation**: Use the native syntax and parameter format of the user-specified tool (Midjourney / ChatGPT (DALL·E) / Jimeng / Stable Diffusion, etc.). If unspecified, ask before generating.
+2. **Subject & content locking**: Clearly describe the main subject, character/object features, and key elements of the original image; state "keep the original subject unchanged".
+3. **Composition & aspect ratio**: State the target aspect ratio explicitly (e.g., `--ar 1:1` or `--ar 16:9`) and the crop/extension direction.
+4. **Camera angle & position**: State the angle adjustment intent (tilt/pitch, sight-line shift, camera pan) and direction.
+5. **Lighting parameters**: Light position, light quality, contrast ratio, highlight/shadow details.
+6. **Tone parameters**: Hue shift, saturation, white balance, color grading, skin tone protection.
+7. **Depth of field & atmosphere**: DoF range, bokeh transition, grain/soft light/vignette, etc.
+8. **Reconstruction intensity**: State the intensity tier (conservative/medium/aggressive) and its permitted adjustment boundary.
+9. **Fidelity constraint commands**: Explicitly write "do not add/remove/replace elements; keep text and logos as-is; no sharpening/blurring/denoising; no artifacts/aliasing/purple fringing".
+10. **Negative prompt (if supported)**: If the tool supports negative prompts, attach the corresponding one (deformity, extra hands, garbled text, artifacts, low sharpness, etc.).
+11. **Compliance statement**: The prompt must not contain infringing or sensitive content; note compliance handling if applicable.
+
+#### 9.2 Prompt Output Format Templates (Adjust Syntax by Tool)
+
+**Midjourney example:**
+```
+[Subject & content locking description], keep the original subject and key elements unchanged,
+[Lighting description], [tone description], [DoF/atmosphere description],
+[Composition/aspect ratio], [camera angle adjustment, or "keep original angle" if none],
+Reconstruction intensity: [medium],
+Fidelity constraints: do not add/remove/replace any element, keep text and logos at original pixels, no sharpening/blurring/denoising, no artifacts/aliasing/purple fringing
+--ar [target ratio] --style raw --v 6
+```
+
+**ChatGPT / DALL·E example:**
+```
+Based on the original image, reconstruct it in [style description].
+Keep the main subject and all key elements unchanged. Do not add, remove, or replace any element.
+Lighting: [position/quality/contrast]. Tone: [hue/saturation/white balance/color grading].
+Depth of field: [DoF/bokeh]. Aspect ratio: [target ratio]. Camera angle: [adjustment, or "unchanged"].
+Intensity: [conservative/medium/aggressive].
+Fidelity: keep text and logos pixel-accurate; no sharpening/blurring/denoising; no artifacts/aliasing/purple fringing.
+```
+
+#### 9.3 Additional Note When Returning a Prompt
+After outputting the prompt, always append:
+> "The prompt above is written in [tool name] syntax and is ready to paste. Please also upload the original image to that tool as a reference/seed image (if the tool supports image-to-image/垫图), otherwise the original subject may not be preserved."
+
+---
+
+## 10. Dependency Declarations
 
 This Skill requires the following capabilities to run normally; when missing, explain to the user:
 - `image_input`: Receive user-uploaded image
-- `image_generation`: Execute image reconstruction
+- `image_generation`: Execute image reconstruction (needed for Method 1/2; not needed for Method 3)
 - `vision_analysis`: Original image understanding, fidelity validation, element inference
 - `web_search`: Verify compliance and infringement risks online
 
 ---
 
-## 10. Version Record
+## 11. Version Record
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 1.2.0 | 2026-08-20 | Added three-way generation execution mechanism (built-in / external API / return prompt); added complete prompt writing rules and tool adaptation; added API key single-use authorization security rules |
 | 1.1.0 | 2026-08-14 | Removed miniature (tilt-shift) feature; added professional photography aesthetic dimensions, aspect ratio/angle adjustment confirmation mechanism, pixel-level fidelity constraints |
 | 1.0.0 | 2026-08-13 | Initial release: supported reconstruction + miniature dual modes |
