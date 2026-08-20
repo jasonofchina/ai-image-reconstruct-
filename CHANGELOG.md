@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.3.0] - 2026-08-20
+
+### Added
+- 新增参考图身份保持机制（精选参考图、身份声明、反过度美化、反换脸）
+  - Added reference-image identity preservation (curated references, identity declaration, anti-beautification, anti-face-swap)
+- 方式二新增供应商参考图支持矩阵（哪些支持/不支持垫图）
+  - Method 2 added provider reference-image support matrix (which support / do not support image-to-image)
+- 方式二新增供应商自动选择优先级
+  - Method 2 added provider auto-selection priority
+- 方式二新增密钥环境变量对照表（9 家供应商）
+  - Method 2 added key environment variable mapping (9 providers)
+- 方式三新增 Prompt 六要素结构化（Subject/Style/Composition/Lighting/Mood/Color）
+  - Method 3 added six-element prompt structure (Subject/Style/Composition/Lighting/Mood/Color)
+- 方式三新增多工具语法差异表（Midjourney / DALL·E / SD / 即梦）
+  - Method 3 added multi-tool syntax difference table (Midjourney / DALL·E / SD / Jimeng)
+- 方式三新增 SD/SDXL 提示词模板
+  - Method 3 added SD/SDXL prompt template
+- 方式三新增 5 条常见陷阱规避 + 2–3 变体生成
+  - Method 3 added 5 common pitfall avoidance rules + 2–3 variant generation
+- 新增「参考与致谢」章节，标注借鉴来源与许可
+  - Added "References & Attribution" section, noting adapted sources and licenses
+
+### Changed
+- 异常处理表新增「主体身份漂移」「供应商不支持参考图」两条
+  - Exception table added "subject identity drift" and "provider does not support reference images"
+- 处理摘要模板「保真状态」新增「身份一致」字段
+  - Processing summary "fidelity status" added "identity consistent" field
+
 ## [1.2.0] - 2026-08-20
 
 ### Added
