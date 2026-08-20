@@ -34,6 +34,14 @@ A directly installable and runnable image processing Skill, benchmarked against 
 - 保真优先级高于风格化，冲突时自动降级  
   Fidelity takes priority over stylization; auto-downgrades when in conflict
 
+### 参考图身份保持 / Reference-Image Identity Preservation
+- 精选 2–4 张参考图，防止主体被"认错/换脸"  
+  Curated 2–4 reference images to prevent the subject from being misidentified or face-swapped
+- 身份声明 + 禁止冗长面部描述，避免合成"相似但不同"的新面孔  
+  Identity declaration + no verbose facial descriptions, to avoid synthesizing a new, similar-looking face
+- 反过度美化：拒绝网红脸、过度磨皮、商业旅拍感  
+  Anti-beautification: reject influencer face, over-smoothing, commercial travel-shoot feel
+
 ### 双重合规审核 / Dual Compliance Review
 - 前置文本审核 + 后置视觉审核  
   Pre-text review + post-visual review
@@ -43,10 +51,10 @@ A directly installable and runnable image processing Skill, benchmarked against 
 ### 生图执行方式三选一 / Three Generation Execution Methods
 - **方式一 · Agent 内置生图**：直接调用平台内置生图接口，最省心  
   **Method 1 · Agent built-in generation**: directly calls the platform's built-in generation API, most hassle-free
-- **方式二 · 外接 API**：用户提供 Key，Agent 调用外接生图接口（单次授权、用完即焚）  
-  **Method 2 · External API**: user provides a key, Agent calls an external generation API (single-use authorization, burn after use)
-- **方式三 · 返回完整 Prompt**：输出可直接粘贴的完整 Prompt，按目标工具适配语法  
-  **Method 3 · Return a complete prompt**: outputs a ready-to-paste complete prompt, adapted to the target tool's syntax
+- **方式二 · 外接 API**：用户提供 Key，Agent 调用外接生图接口（单次授权、用完即焚、多供应商适配）  
+  **Method 2 · External API**: user provides a key, Agent calls an external generation API (single-use authorization, burn after use, multi-provider adaptation)
+- **方式三 · 返回完整 Prompt**：六要素结构化 + 按目标工具适配语法（Midjourney / DALL·E / SD / 即梦等）  
+  **Method 3 · Return a complete prompt**: six-element structure + tool-specific syntax (Midjourney / DALL·E / SD / Jimeng, etc.)
 
 ## 安装方法 / Installation
 
@@ -121,6 +129,14 @@ See examples/example_reconstruct.md
   Reasons for interception, downgrade, or skipping adjustments are explained to the user
 - **密钥安全**：外接 API Key 仅单次授权使用，用完立即删除，绝不存储、记录或二次复用  
   **Key security**: external API keys are authorized for single use only, deleted immediately after use, never stored, logged, or reused
+
+## 参考与致谢 / References & Attribution
+
+本 Skill 在以下方面借鉴了开源项目的设计理念（均经重新表达，符合其 MIT 许可）：  
+This Skill adapts design concepts from the following open-source projects (re-expressed in our own words, under their MIT licenses):
+
+- **多供应商 API 适配、参考图身份保持、密钥环境变量管理** / Multi-provider API adaptation, reference-image identity preservation, key env-var management：参考 [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills)（MIT License）
+- **Prompt 六要素结构化、多工具语法差异、负面提示词与陷阱规避** / Six-element prompt structure, multi-tool syntax, negative prompts, pitfall avoidance：参考 `image-prompt`（gokulb20/Crewm8，MIT License）
 
 ## 版本记录 / Version History
 
