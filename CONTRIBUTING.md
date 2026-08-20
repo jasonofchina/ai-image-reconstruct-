@@ -14,7 +14,7 @@
 
 ### 1. 提出问题（Issue）
 如你遇到问题、有改进建议或疑问：
-1. 前往 [Issues](https://github.com/jasonofchina/ai-image-reconstruct/issues) 页面
+1. 前往 [Issues](https://github.com/jasonofchina/ai-image-reconstruct-/issues) 页面
 2. 选择合适的模板（Bug 反馈 或 功能建议）
 3. 清晰描述问题、复现步骤与期望结果
 
@@ -53,7 +53,7 @@ Thank you for your interest in the AI Image Intelligent Reconstruction project. 
 ## 📌 How to Contribute
 
 ### 1. Report Issues
-- Go to [Issues](https://github.com/jasonofchina/ai-image-reconstruct/issues)
+- Go to [Issues](https://github.com/jasonofchina/ai-image-reconstruct-/issues)
 - Use the Bug Report or Feature Request template
 - Clearly describe the issue, steps to reproduce, and expected result
 
@@ -73,4 +73,4 @@ Thank you for your interest in the AI Image Intelligent Reconstruction project. 
 
 ## 🙏 Thanks
 
-Together, let’s make this a more powerful and reliable tool!
+Together, let's make this a more powerful and reliable tool!
