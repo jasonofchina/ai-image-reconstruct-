@@ -1,15 +1,15 @@
 ---
-skill_name: "AI Image Intelligent Reconstruction (Pro Photography Edition)"
-skill_id: "image-reconstruct"
-version: "1.3.0"
-author: "jasonofchina"
-type: "image_processing"
-trigger: "User uploads an image and inputs [reconstruct] related commands"
-required_capabilities:
-  - image_input
-  - image_generation
-  - vision_analysis
-  - web_search
+name: image-reconstruct
+description: Professional photography skill for AI image reconstruction and style transfer based on the original image. Supports 3 intensity levels, aspect ratio and camera angle adjustment, pixel-level fidelity constraints, reference-image identity preservation, and 3 generation methods (built-in API / external API / return prompt). Use when the user uploads an image and asks to reconstruct, restyle, redraw, regenerate, or style transfer.
+license: MIT
+compatibility: For Claude, ChatGPT, Coze and other platforms supporting the Agent Skills open standard. Prompt-based platforms (Doubao, Qianwen, Wenxin, Xinghuo) can paste the body directly as a system prompt.
+metadata:
+  author: jasonofchina
+  version: "1.3.0"
+  skill_id: image-reconstruct
+  type: image_processing
+  trigger: User uploads an image and inputs reconstruct-related commands
+  required_capabilities: image_input, image_generation, vision_analysis, web_search
 ---
 
 # Skill: AI Image Intelligent Reconstruction (Pro Photography Edition)
