@@ -40,6 +40,14 @@ A directly installable and runnable image processing Skill, benchmarked against 
 - 主动规避版权、肖像、商标侵权风险  
   Proactively avoids copyright, portrait, and trademark infringement risks
 
+### 生图执行方式三选一 / Three Generation Execution Methods
+- **方式一 · Agent 内置生图**：直接调用平台内置生图接口，最省心  
+  **Method 1 · Agent built-in generation**: directly calls the platform's built-in generation API, most hassle-free
+- **方式二 · 外接 API**：用户提供 Key，Agent 调用外接生图接口（单次授权、用完即焚）  
+  **Method 2 · External API**: user provides a key, Agent calls an external generation API (single-use authorization, burn after use)
+- **方式三 · 返回完整 Prompt**：输出可直接粘贴的完整 Prompt，按目标工具适配语法  
+  **Method 3 · Return a complete prompt**: outputs a ready-to-paste complete prompt, adapted to the target tool's syntax
+
 ## 安装方法 / Installation
 
 ### 方法一：直接导入 Skill 文件  
@@ -67,6 +75,14 @@ After uploading an image, enter any of the following keywords to trigger:
 Reconstruct, cinematic teal-orange tone, change to 1:1 aspect ratio, elevate sight line, medium strength
 ```
 
+### 生图方式选择 / Choosing a Generation Method
+每次任务开始前，Agent 会询问本次采用哪种生图方式：  
+Before each task, the Agent will ask which generation method to use:
+
+> 1. Agent 直接调用内置生图接口（推荐）
+> 2. 我提供 API Key，由 Agent 调用外接生图接口（仅本次有效）
+> 3. 返回完整 Prompt，我自己拿去生图工具里用（需告知目标工具）
+
 ## 输入规范 / Input Specifications
 
 | 项目 / Item         | 要求 / Requirement                              |
@@ -82,7 +98,7 @@ Reconstruct, cinematic teal-orange tone, change to 1:1 aspect ratio, elevate sig
 This Skill requires the following capabilities to run normally:
 
 - `image_input`：接收用户上传图片 / Receive user-uploaded images
-- `image_generation`：执行图像重构 / Perform image reconstruction
+- `image_generation`：执行图像重构（方式一/方式二需要；方式三不需要）/ Perform image reconstruction (needed for Method 1/2; not needed for Method 3)
 - `vision_analysis`：原图理解、保真校验、元素推理 / Original image understanding, fidelity validation, element inference
 - `web_search`：联网核实合规与侵权风险 / Verify compliance and infringement risks online
 
@@ -103,6 +119,8 @@ See examples/example_reconstruct.md
   Dual review mechanisms ensure legal and compliant output
 - 拦截、降级或跳过调整时均会向用户说明原因  
   Reasons for interception, downgrade, or skipping adjustments are explained to the user
+- **密钥安全**：外接 API Key 仅单次授权使用，用完立即删除，绝不存储、记录或二次复用  
+  **Key security**: external API keys are authorized for single use only, deleted immediately after use, never stored, logged, or reused
 
 ## 版本记录 / Version History
 
