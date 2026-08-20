@@ -59,7 +59,7 @@ Import the `skill.md` file from this repository into your AI Agent/platform to r
 ### 方法二：克隆仓库  
 Method 2: Clone the repository
 ```bash
-git clone https://github.com/jasonofchina/ai-image-reconstruct.git
+git clone https://github.com/jasonofchina/ai-image-reconstruct-.git
 ```
 
 ## 使用方法 / How to Use
