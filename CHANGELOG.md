@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.2] - 2026-08-22
+
+### Added
+- 新增 `docs/FAQ.md`：常见问题（安装/使用/其他，中英双语）
+  - Added `docs/FAQ.md`: FAQ (installation / usage / miscellaneous, bilingual)
+- README 新增「常见问题」章节与目录入口
+  - README added an FAQ section and table-of-contents entry
+
 ## [1.4.1] - 2026-08-22
 
 ### Added
