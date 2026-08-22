@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.4.0] - 2026-08-21
+
+### Added
+- 新增「平台适配与能力自检」章节：平台类型识别、四项能力自检与降级、执行路径决策树、通用铁律
+  - Added "Platform Adaptation & Capability Self-Check": platform type identification, four-capability self-check & fallback, execution path decision tree, universal iron rules
+- 新增 `docs/install-guide.md`：17+ 平台安装指南（标准 Skills / 提示词型 / 桌面工作台 / MCP 玩法）
+  - Added `docs/install-guide.md`: install guide for 17+ platforms (standard Skills / prompt-based / desktop workbench / MCP)
+- 新增 `THIRD_PARTY_NOTICES.md`（第三方许可声明，含 MIT 原文）
+  - Added `THIRD_PARTY_NOTICES.md` (third-party notices with full MIT license texts)
+
+### Changed
+- frontmatter 版本号升级至 1.4.0
+  - frontmatter version bumped to 1.4.0
+- README 新增平台适配说明、THIRD_PARTY_NOTICES 链接、docs 安装指南链接
+  - README added platform-adaptation note, THIRD_PARTY_NOTICES link, and docs install-guide link
+
 ## [1.3.0] - 2026-08-20
 
 ### Added
