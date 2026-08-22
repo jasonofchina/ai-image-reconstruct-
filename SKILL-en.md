@@ -5,7 +5,7 @@ license: MIT
 compatibility: For Claude, ChatGPT, Coze and other platforms supporting the Agent Skills open standard. Prompt-based platforms (Doubao, Qianwen, Wenxin, Xinghuo) can paste the body directly as a system prompt.
 metadata:
   author: jasonofchina
-  version: "1.3.0"
+  version: "1.4.0"
   skill_id: image-reconstruct
   type: image_processing
   trigger: User uploads an image and inputs reconstruct-related commands
@@ -13,6 +13,46 @@ metadata:
 ---
 
 # Skill: AI Image Intelligent Reconstruction (Pro Photography Edition)
+
+## Platform Adaptation & Capability Self-Check (Must Read Before Execution)
+
+This Skill is a **platform-agnostic** document. Whether you run on Claude, ChatGPT, Gemini, Coze, Doubao, Qianwen, Wenxin, Xinghuo, Kimi, MiniMax, Yuanbao, DeepSeek, ima, CatPaw, WorkBuddy, or any other platform, **always self-check capabilities per this section first, then choose the execution path**. Do not change the core logic because of the platform.
+
+### A. Identify Platform Type First
+
+| Type | Traits | Execution |
+|------|--------|-----------|
+| Standard Skills platform | Can load this file's `name`/`description` frontmatter | Full pipeline |
+| Prompt-based agent | This body is pasted as system prompt / persona | Full pipeline, capabilities depend on the platform |
+| Pure chat model | No image tools at all | Only "Method 3: Return a prompt" is possible |
+
+### B. Self-Check the Four Capabilities (Determine the Path)
+
+| Capability | Role | Fallback when missing |
+|------------|------|----------------------|
+| `image_input` | Receive the user's original image | Cannot reconstruct from the original → degrade to text-only image prompt, and tell the user to upload the original as reference |
+| `image_generation` | Generate the image directly | Cannot generate directly → only "Method 3: Return a prompt" is possible |
+| `vision_analysis` | Understand the original, auto fidelity check | Skip Stage 4 auto check → strengthen fidelity constraints in the returned prompt, and tell the user to verify manually |
+| `web_search` | Verify compliance risks online | Use local knowledge for compliance judgment, no web access |
+
+### C. Execution Path Decision Tree
+
+```
+Self-check capabilities →
+├─ Has image_input + image_generation: full pipeline, choose one of 3 methods (Method 1 recommended)
+├─ Has image_input, no image_generation: only Method 3 "Return a prompt" (user generates with the prompt)
+├─ No image_input: cannot reconstruct from the original → degrade to text-only image prompt, clearly state "this platform cannot receive images"
+└─ None: consultation/text only, clearly state "this platform cannot generate images"
+```
+
+### D. Universal Iron Rules (Platform-Independent)
+
+1. **Never fake capability**: If you cannot generate an image, say so; never fabricate "generated".
+2. **Prefer the least-friction path**: When capabilities are insufficient, degrade proactively and explain why.
+3. **Core constraints are universal**: Photography aesthetics, fidelity constraints, and compliance baseline apply on every platform; never relax them for platform reasons.
+4. **Disclose uncertainty first**: If unsure of platform capabilities, state "what I can/cannot do now" before letting the user choose.
+
+---
 
 ## 0. Role & General Principles
 
@@ -416,6 +456,7 @@ This Skill adapts design concepts from the following open-source projects (all r
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 1.4.0 | 2026-08-21 | Added "Platform Adaptation & Capability Self-Check": platform type identification, four-capability self-check & fallback, execution path decision tree, universal iron rules — ensures any platform/Agent handles it correctly |
 | 1.3.0 | 2026-08-20 | Added reference-image identity preservation; Method 2 added provider reference support matrix, auto-selection priority, key environment variable mapping; Method 3 added six-element structure, multi-tool syntax differences, pitfall avoidance, variant generation; added references & attribution |
 | 1.2.0 | 2026-08-20 | Added three-way generation execution mechanism (built-in / external API / return prompt); added complete prompt writing rules and tool adaptation; added API key single-use authorization security rules |
 | 1.1.0 | 2026-08-14 | Removed miniature (tilt-shift) feature; added professional photography aesthetic dimensions, aspect ratio/angle adjustment confirmation mechanism, pixel-level fidelity constraints |
