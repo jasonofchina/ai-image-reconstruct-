@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.1] - 2026-08-22
+
+### Added
+- 新增 `examples/example_fallback.md`：平台降级适配示例（4 个场景 + 降级速查表）
+  - Added `examples/example_fallback.md`: platform fallback examples (4 scenarios + quick reference table)
+- 新增 `SECURITY.md`：密钥处理强制规范、能力边界、漏洞报告方式
+  - Added `SECURITY.md`: mandatory API key handling, known limitations, vulnerability reporting
+- README 新增「🚀 快速开始」与「📑 目录」章节
+  - README added "Quick Start" and "Table of Contents" sections
+
+### Changed
+- README 测试用例章节补充降级示例链接，合规章节补充 SECURITY 链接
+  - README added fallback-example link in test cases and SECURITY link in compliance section
+
 ## [1.4.0] - 2026-08-21
 
 ### Added
