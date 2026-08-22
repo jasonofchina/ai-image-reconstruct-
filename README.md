@@ -8,7 +8,31 @@
 
 A directly installable and runnable image processing Skill, benchmarked against top commercial photography aesthetics, focusing on AI-powered intelligent style reconstruction based on the original image. Strictly preserves key elements and pixel-level sharpness, avoiding AI hallucinations and quality degradation.
 
+## 📑 目录 / Table of Contents
+
+- [功能特性 / Features](#-功能特性--features)
+- [🚀 快速开始 / Quick Start](#-快速开始--quick-start)
+- [安装方法 / Installation](#安装方法--installation)
+- [使用方法 / How to Use](#使用方法--how-to-use)
+- [输入规范 / Input Specifications](#输入规范--input-specifications)
+- [依赖能力 / Required Capabilities](#️-依赖能力--required-capabilities)
+- [测试用例 / Test Cases](#测试用例--test-cases)
+- [合规与安全 / Compliance & Safety](#合规与安全--compliance--safety)
+- [参考与致谢 / References & Attribution](#参考与致谢--references--attribution)
+- [版本记录 / Version History](#版本记录--version-history)
+- [许可证 / License](#许可证--license)
+
+## 🚀 快速开始 / Quick Start
+
+1. 下载 `SKILL.md`（中文）或 `SKILL-en.md`（英文）
+   Download `SKILL.md` (Chinese) or `SKILL-en.md` (English)
+2. 按平台安装：标准平台导入文件 / 提示词平台粘贴正文（详见 [docs/install-guide.md](docs/install-guide.md)）
+   Install by platform: import the file on standard platforms / paste the body on prompt-based platforms (see [docs/install-guide.md](docs/install-guide.md))
+3. 上传图片，输入「重构 + 你想要的风格」，即可开始
+   Upload an image, type "reconstruct + your desired style", and you're ready to go
+
 ## ✨ 功能特性 / ✨ Features
+
 
 ### 平台适配与能力自检 / Platform Adaptation & Capability Self-Check
 - v1.4.0 起内置：任何平台先自检能力再自动降级，标准 Skills / 提示词型 / 纯对话模型均可正确处理  
@@ -120,10 +144,16 @@ This Skill requires the following capabilities to run normally:
 
 ## 测试用例 / Test Cases
 
-详见 examples/example_reconstruct.md  
-See examples/example_reconstruct.md
+- 完整重构流程：见 [examples/example_reconstruct.md](examples/example_reconstruct.md)  
+  Full reconstruction flow: [examples/example_reconstruct.md](examples/example_reconstruct.md)
+- 平台降级适配：见 [examples/example_fallback.md](examples/example_fallback.md)  
+  Platform fallback adaptation: [examples/example_fallback.md](examples/example_fallback.md)
 
 ## 合规与安全 / Compliance & Safety
+
+> 安全规范与漏洞报告方式见 [SECURITY.md](SECURITY.md)  
+> Security rules and vulnerability reporting: see [SECURITY.md](SECURITY.md)
+
 
 - 所有处理必须以原图为基础，禁止无中生有  
   All processing must be based on the original image; nothing can be generated from scratch
