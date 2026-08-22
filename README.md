@@ -6,6 +6,10 @@ A directly installable and runnable image processing Skill, benchmarked against 
 
 ## ✨ 功能特性 / ✨ Features
 
+### 平台适配与能力自检 / Platform Adaptation & Capability Self-Check
+- v1.4.0 起内置：任何平台先自检能力再自动降级，标准 Skills / 提示词型 / 纯对话模型均可正确处理  
+  Since v1.4.0: self-checks capabilities and auto-degrades on any platform — works correctly on standard Skills, prompt-based agents, and pure chat models
+
 ### 专业摄影级智能重构 / Professional Photography-Grade Intelligent Reconstruction
 - 基于原图主体、构图、光影、色调、景深、视角进行风格化重构  
   Style reconstruction based on subject, composition, lighting, tones, DoF, and perspective
@@ -138,10 +142,16 @@ This Skill adapts design concepts from the following open-source projects (re-ex
 - **多供应商 API 适配、参考图身份保持、密钥环境变量管理** / Multi-provider API adaptation, reference-image identity preservation, key env-var management：参考 [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills)（MIT License）
 - **Prompt 六要素结构化、多工具语法差异、负面提示词与陷阱规避** / Six-element prompt structure, multi-tool syntax, negative prompts, pitfall avoidance：参考 `image-prompt`（gokulb20/Crewm8，MIT License）
 
+完整许可证原文见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)  
+Full license texts: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+
 ## 版本记录 / Version History
 
 见 CHANGELOG.md  
 See CHANGELOG.md
+
+多平台安装指南见 [docs/install-guide.md](docs/install-guide.md)  
+Multi-platform install guide: [docs/install-guide.md](docs/install-guide.md)
 
 ## 许可证 / License
 
