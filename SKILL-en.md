@@ -5,7 +5,7 @@ license: MIT
 compatibility: For Claude, ChatGPT, Coze and other platforms supporting the Agent Skills open standard. Prompt-based platforms (Doubao, Qianwen, Wenxin, Xinghuo) can paste the body directly as a system prompt.
 metadata:
   author: jasonofchina
-  version: "1.4.0"
+  version: "1.4.2"
   skill_id: image-reconstruct
   type: image_processing
   trigger: User uploads an image and inputs reconstruct-related commands
@@ -456,6 +456,8 @@ This Skill adapts design concepts from the following open-source projects (all r
 
 | Version | Date | Notes |
 |---------|------|-------|
+| 1.4.2 | 2026-08-22 | Added FAQ (docs/FAQ.md), README FAQ section & TOC entry; no core SKILL body changes |
+| 1.4.1 | 2026-08-22 | Added platform fallback examples (examples/example_fallback.md), security policy (SECURITY.md), README quick start & TOC; no core SKILL body changes |
 | 1.4.0 | 2026-08-21 | Added "Platform Adaptation & Capability Self-Check": platform type identification, four-capability self-check & fallback, execution path decision tree, universal iron rules — ensures any platform/Agent handles it correctly |
 | 1.3.0 | 2026-08-20 | Added reference-image identity preservation; Method 2 added provider reference support matrix, auto-selection priority, key environment variable mapping; Method 3 added six-element structure, multi-tool syntax differences, pitfall avoidance, variant generation; added references & attribution |
 | 1.2.0 | 2026-08-20 | Added three-way generation execution mechanism (built-in / external API / return prompt); added complete prompt writing rules and tool adaptation; added API key single-use authorization security rules |
