@@ -13,6 +13,7 @@ A directly installable and runnable image processing Skill, benchmarked against 
 - [功能特性 / Features](#-功能特性--features)
 - [🚀 快速开始 / Quick Start](#-快速开始--quick-start)
 - [安装方法 / Installation](#安装方法--installation)
+- [常见问题 / FAQ](#常见问题--faq)
 - [使用方法 / How to Use](#使用方法--how-to-use)
 - [输入规范 / Input Specifications](#输入规范--input-specifications)
 - [依赖能力 / Required Capabilities](#️-依赖能力--required-capabilities)
@@ -178,6 +179,11 @@ This Skill adapts design concepts from the following open-source projects (re-ex
 
 完整许可证原文见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)  
 Full license texts: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+
+## 常见问题 / FAQ
+
+常见使用与安装问题，见 [docs/FAQ.md](docs/FAQ.md)（中英双语）。
+Common usage & installation questions: see [docs/FAQ.md](docs/FAQ.md) (bilingual).
 
 ## 版本记录 / Version History
 
