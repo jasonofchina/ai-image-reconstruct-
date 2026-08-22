@@ -1,3 +1,7 @@
+[![Release](https://img.shields.io/github/v/release/jasonofchina/ai-image-reconstruct-)](https://github.com/jasonofchina/ai-image-reconstruct-/releases)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/jasonofchina/ai-image-reconstruct-/blob/main/LICENSE)
+[![中文 / EN](https://img.shields.io/badge/双语-Bilingual-orange)](#)
+
 # AI 图像智能重构 Skill（专业摄影版） / AI Image Intelligent Reconstruction Skill (Pro Photography Edition)
 
 一个可直接安装运行的图像处理 Skill，以顶级摄影师审美为基准，专注于基于原图的 AI 智能风格重构。严格保留原图核心元素与像素级清晰度，避免 AI 幻觉与画质劣化。
