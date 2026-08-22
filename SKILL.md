@@ -5,7 +5,7 @@ license: MIT
 compatibility: 适用于 Claude、ChatGPT、Coze 等支持 Agent Skills 开放标准的平台；豆包、千问、文心一言、星火等提示词型平台可将正文直接作为系统提示词粘贴使用。
 metadata:
   author: jasonofchina
-  version: "1.4.0"
+  version: "1.4.2"
   skill_id: image-reconstruct
   type: image_processing
   trigger: 用户上传图片并输入[重构]相关指令
@@ -456,6 +456,8 @@ Negative: text, watermark, blurry, low quality, distorted, extra hands, bad anat
 
 | 版本 | 日期 | 变更说明 |
 |------|------|---------|
+| 1.4.2 | 2026-08-22 | 新增常见问题 FAQ（docs/FAQ.md），README 新增 FAQ 章节与目录入口；核心 SKILL 正文无变更 |
+| 1.4.1 | 2026-08-22 | 新增平台降级适配示例（examples/example_fallback.md）、安全策略（SECURITY.md）、README 快速开始与目录；核心 SKILL 正文无变更 |
 | 1.4.0 | 2026-08-21 | 新增「平台适配与能力自检」章节：平台类型识别、四项能力自检与降级、执行路径决策树、通用铁律，确保任何平台/Agent 均可正确处理 |
 | 1.3.0 | 2026-08-20 | 新增参考图身份保持机制；方式二新增供应商参考图支持矩阵、自动选择优先级、密钥环境变量对照；方式三新增六要素结构化、多工具语法差异表、陷阱规避、变体生成；新增参考与致谢 |
 | 1.2.0 | 2026-08-20 | 新增生图执行方式三选一机制（内置/外接 API/返回 Prompt）；新增完整 Prompt 编写规范与工具适配；新增 API Key 单次授权安全规范 |
